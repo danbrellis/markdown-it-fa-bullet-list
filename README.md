@@ -2,6 +2,8 @@
 
 A [markdown-it](https://www.npmjs.com/package/markdown-it) plugin to use [font awesome icons in a list](https://fontawesome.com/how-to-use/on-the-web/styling/icons-in-a-list).
 
+[![Build Status](https://travis-ci.org/danbrellis/markdown-it-fa-bullet-list.svg?branch=master)](https://travis-ci.com/github/danbrellis/markdown-it-fa-bullet-list)
+
 ## What it does
 
 Adds appropriate classes and font awesome icons to bulleted lists as per the font awesome recommended documentation:
