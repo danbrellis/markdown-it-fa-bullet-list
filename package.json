@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 5000",
-    "clean": "rm -Rf dist && mkdir dist",
     "build": "npm run clean && npm run build-dist",
+    "clean": "rimraf dist && mkdir dist",
     "build-dist": "npm run build-dist-copyright && npm run build-dist-file && npm run build-dist-min",
-    "build-dist-copyright": "echo /*! ${npm_package_name} ${npm_package_version} ${npm_package_homepage} by ${npm_package_author} @license ${npm_package_license} \\*/ > dist/${npm_package_name}.js",
-    "build-dist-file": "browserify ${npm_package_main} -s markdownitTaskLists >> dist/${npm_package_name}.js",
-    "build-dist-min": "uglifyjs dist/${npm_package_name}.js -b beautify=false,ascii-only=true -c -m --preamble \"/*! ${npm_package_name} ${npm_package_version} ${npm_package_homepage} by ${npm_package_author} @license {$npm_package_license} */\" > dist/${npm_package_name}.min.js"
+    "build-dist-copyright": "cross-var echo /*! $npm_package_name $npm_package_version $npm_package_homepage by $npm_package_author_name @license $npm_package_license \\*/ > dist/markdown-it-fa-bullet-list.js",
+    "build-dist-file": "cross-var browserify $npm_package_main -s markdownitFaBulletList -o dist/markdown-it-fa-bullet-list.js -t [ babelify --presets [ @babel/preset-env ] ]",
+    "build-dist-min": "cross-var uglifyjs dist/markdown-it-fa-bullet-list.js -b beautify=false,ascii-only=true -c -m --preamble \"/*! $npm_package_name $npm_package_version $npm_package_homepage by $npm_package_author_name @license $npm_package_license */\" > dist/markdown-it-fa-bullet-list.min.js"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,13 @@
   },
   "homepage": "https://github.com/danbrellis/markdown-it-fa-bullet-list#readme",
   "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "babel-cli": "^6.26.0",
+    "babelify": "^10.0.0",
     "browserify": "^16.5.0",
     "cheerio": "^1.0.0-rc.3",
+    "cross-var": "^1.1.0",
     "markdown-it": "^10.0.0",
     "mocha": "^7.1.0",
     "uglify": "^0.1.5"
