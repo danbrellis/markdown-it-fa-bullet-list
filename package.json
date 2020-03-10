@@ -1,0 +1,40 @@
+{
+  "name": "markdown-it-fa-bullet-list",
+  "version": "1.0.0",
+  "description": "A markdown-it plugin to use font awesome icons in a list.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 5000",
+    "clean": "rm -Rf dist && mkdir dist",
+    "build": "npm run clean && npm run build-dist",
+    "build-dist": "npm run build-dist-copyright && npm run build-dist-file && npm run build-dist-min",
+    "build-dist-copyright": "echo /*! ${npm_package_name} ${npm_package_version} ${npm_package_homepage} by ${npm_package_author} @license ${npm_package_license} \\*/ > dist/${npm_package_name}.js",
+    "build-dist-file": "browserify ${npm_package_main} -s markdownitTaskLists >> dist/${npm_package_name}.js",
+    "build-dist-min": "uglifyjs dist/${npm_package_name}.js -b beautify=false,ascii-only=true -c -m --preamble \"/*! ${npm_package_name} ${npm_package_version} ${npm_package_homepage} by ${npm_package_author} @license {$npm_package_license} */\" > dist/${npm_package_name}.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:danbrellis/markdown-it-fa-bullet-list.git"
+  },
+  "keywords": [
+    "markdown",
+    "markdown-it",
+    "markdown-it-plugin",
+    "font awesome",
+    "list",
+    "icons"
+  ],
+  "author": "Daniel Brellis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danbrellis/markdown-it-fa-bullet-list/issues"
+  },
+  "homepage": "https://github.com/danbrellis/markdown-it-fa-bullet-list#readme",
+  "devDependencies": {
+    "browserify": "^16.5.0",
+    "cheerio": "^1.0.0-rc.3",
+    "markdown-it": "^10.0.0",
+    "mocha": "^7.1.0",
+    "uglify": "^0.1.5"
+  }
+}
